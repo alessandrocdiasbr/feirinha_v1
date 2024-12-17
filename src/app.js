@@ -46,6 +46,19 @@ app.get("/items", (req, res) => {
     return res.json(items);
 });
 
+app.get("/items/:id", (req, res) => {
+    const { id } = req.params;
+
+    const item = items.find( i => i.id === Number(id));
+    if(!item) {
+        return res.status(404).json({
+            message: "Item não encontrado"
+        });
+    };
+    return res.json(item);
+    
+}) 
+
 
 app.listen(5000, () => {
     console.log("servidor rodando na porta 5000");
