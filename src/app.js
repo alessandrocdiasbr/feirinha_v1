@@ -36,6 +36,15 @@ app.post("/items", (req, res) => {
     return res.json(201).json(novoItem);
 });
 
+app.get("/items", (req, res) => {
+    const { type } = req.query;
+    if(type) {
+        const itemsFiltrados = items.filter(item => item.type.toLowerCase() === type.toLowerCase()
+    );
+    return res.json(itemsFiltrados)
+    }
+    return res.json(items);
+});
 
 
 app.listen(5000, () => {
