@@ -8,18 +8,23 @@ app.use(json());
 const items = []
 
 app.post("/items", (req, res) => {
-    const items = req.body.items;
+    const { name, quantify, type } = req.body;
 
-    if (!items.name || !items.quantify || !items.type) {
-        return res.status(422).send("Você deve informar o nome do item, a quantidade do item e o tipo do item!");
-    } 
+    if(!name || !quantify || !type) {
+        return res.status(422).json({
+            message: "Você deve informar o nome do item, a quantidade do item e o tipo do item"
+        });
+    }
 
-    items.push({
-        id: items.length + 1,
-        ...items
-    });
-    return res.status(201).send("Item adicionado com sucesso!")
-});
+    const itemExistente = items.find(
+        item => item.name.toLowerCase() === name.toLowerCase());
+
+        if(itemExistente) {
+            return res.status(409).json({
+                message: "Item já existe na lista de compras"
+            })
+        }
+})
 
 
 
