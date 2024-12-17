@@ -24,7 +24,17 @@ app.post("/items", (req, res) => {
                 message: "Item já existe na lista de compras"
             })
         }
-})
+    
+    const novoItem = {
+        id: items.length + 1,
+        name,
+        quantify: Number(quantify),
+        type
+    };
+
+    items.push(novoItem);
+    return res.json(201).json(novoItem);
+});
 
 
 
