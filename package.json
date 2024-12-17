@@ -2,11 +2,11 @@
   "name": "feirinha_v1",
   "version": "1.0.0",
   "description": "Projeto Driven",
-  "main": "index.js",
+  "main": "app.js",
   "type": "module",
   "scripts": {
-    "start": "node src/index.js",
-    "dev": "nodemon src/index.js"
+    "start": "node .src/app.js",
+    "dev": "nodemon .src/app.js"
   },
   "keywords": [],
   "author": "Alessandro Dias",
